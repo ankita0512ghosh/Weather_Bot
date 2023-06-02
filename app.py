@@ -1,16 +1,18 @@
 import requests
 import streamlit as st
-import json
+import json, keys
+from dotenv.main import load_dotenv
 
+load_dotenv()
 def get_weather(city):
     """Gets the current weather forecast for the given city."""
 
     # Get the API key from OpenWeatherMap.
-    API_KEY = "58bb081f22fea521a4a3cd7ccb24aa88"
+    api_key = keys.environ[API_KEY] 
 
     # Make a request to the OpenWeatherMap API.
     response = requests.get(
-        "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(city, API_KEY)
+        "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}".format(city, api_key)
     )
 
     # Check for errors.
